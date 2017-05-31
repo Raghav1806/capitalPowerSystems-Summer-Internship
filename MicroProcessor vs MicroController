@@ -1,0 +1,13 @@
+Microprocessor:
+(1) Multitasking in nature. Can perform multiple tasks at a time. Ex. On computer we can play music while writing text in text editor.
+(2) RAM, ROM, I/O ports, and Timers can be added externally and can vary in numbers.
+(3) Designers can decide the number of memory or I/O ports needed.
+(4) External support of external memory and I/O ports makes a microprocessor-based system heavier and costlier.
+(5) External devices require more space and their power consumption is high.
+
+Microcontroller:
+(1) Single task oriented. Ex. a washing machine is designed for washing clothes only.
+(2) RAM, ROM, I/O ports, and Timers cannot be added externally. These components are to be embedded together on a chip and are fixed in numbers.
+(3) Fixed number of memory or I/O makes a microcontroller ideal for limited but specific task.
+(4) Microcontrollers are lightweight and cheaper than a microprocessor.
+(5) A microcontroller based system consumes less power and takes less space.
