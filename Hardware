@@ -1,0 +1,62 @@
+- Microcontroller used: Freescale (NXP) SC667502 GLHS IN29N [Photon DS]
+
+- Main circuit components:
+(1) DC supply
+Motive: To reduce the input voltage levels and feed it into the main circuit.
+
+(2) RTC battery [Real Time Clock]
+Motive: Constant power supply to RTC terminal of microcontroller, whether meter is ON/OFF.
+ 
+(3) Main battery 
+Motive: Used as a source for various circuit components like power control, push button etc.
+
+(4) Neutral missing
+Motive: For checking Neutral Missing tampering condition.
+
+(5) Neutral CT
+Motive: To check the Neutral current in meter in case of tampering.
+
+(6) Shunt
+Motive: To check the Phase current in meter in case of tampering.
+
+(*) Note: Total current flowing through meter = Phase current + Neutral current.
+
+(7) Voltage network
+Motive: Used to narrow down voltage and input it to the microcontroller, which is then used to output the voltage on LCD screen.
+
+(8) Power control
+Motive: To supply voltage when a switch is pressed.
+
+(9) RS 232 communication [used less]
+Motive: To transfer data using cable from meter to data accumulator. [UART]
+
+(10) Optical + IR communication
+Motive: To transfer data using optical sensors from meter to data accumulator. [UART]
+
+(11) Magnet sensor
+Motive: Used to detect high voltage application for tampering purpose.
+
+(12) EEPROM [Memory]
+Motive: Memory to store data.
+EEPROM: Electrically Erasable Programmable Read Only Memory.
+- Non volatile memory to store small amounts of data, allows bytes to be read, erased and re-written individually.
+- Electrical Interface: [for data input and output]
+	(a) Serial
+	(b) Parallel
+- Parallel EEPROM is faster but larger in size than serial EEPROM.
+- EEPROM requires data to be written or erased one byte at a time. 
+
+(13) Push button
+Motive: Start the meter and show the values of different parameters when button is pressed.
+
+(14) Debugger connector
+Motive: Used to upload code into the meter [JTAG].
+
+(15) Cover open switch
+Motive: It checks whether the cover has been opened or not for tampering purpose.
+
+(16) LED
+Motive: LED blink rate is directly proportional to user consumption rate. 
+ 
+(17) LCD [25 pin] 
+Motive: To display various parameters of the meter.
