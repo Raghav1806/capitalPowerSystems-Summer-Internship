@@ -1,0 +1,54 @@
+Two types of meter testing:
+(1) Acceptance Test
+(2) Routine Test
+
+Following tests are generally carried for testing Electric Meters:
+
+(1) AC high voltage test (A,R)
+Significance: Checks whether meter works perfectly when abruptly large value of voltage is supplied.
+
+(2) Insulation test (A,R)
+Significance: Checks whether meter works perfectly when large voltage is struck on its surface.
+
+(3) Test on limits of error (A,R)
+Significance: Compares the supplied (actual) value of current and voltage applied to the meter given that various combinations of load (resistive, capacitive and inducive) are applied to it.
+
+(4) Test of Meter Constant (A)
+- Meter Constant : Number of LED pulses equal to 1KWHr
+
+(5) Test of starting condition (A,R)
+Sigificance: Checks whether meter gives reading for a given minimum amount of current (0.5% of I(basic)) given that various combinations of load (resistive, capacitive and inductive) are applied to it. 
+
+(6) Test of no-load condition (A,R)
+Significance: Checks the behaviour of meter when voltage is supplied to it, but load is not applied to it.
+
+(7) Test of repeatability of error (A)
+Significance: Checks the error produced in meter readings when various combinations of load (resistive, capacitive and inducive) are applied to it.
+
+(8) Test of power consumption (A)
+Significance: Checks the power consumed by meter itself for its proper functioning.
+
+
+Major terms used:
+(1) Meter constant: Expresses relation between energy registered by meter and corresponding pulse count of test output.
+(2) Basic current: Value of current in accordance with which the relevant performance of meter is fixed.
+(3) %age error: (Energy Registered - True Energy)/True Energy
+
+Electrical Requirements of the meter:
+(1) Power Consumption
+(2) Influence of supply voltage
+(3) Voltage range
+(4) Voltage dips and interruption
+(5) Start time over current
+(6) Influence of self heating
+(7) Influence of heating
+(8) Insulation
+(9) Immunity of earth fault
+
+Electromagnetic compatibility
+(1) Immunity to electromagnetic disturbance
+	- Electrostatic discharge
+	- Electromagnetic High Field
+	- Fast transient burst
+(2) Radio interference suppression
+
