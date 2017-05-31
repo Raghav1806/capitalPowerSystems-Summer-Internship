@@ -1,0 +1,8 @@
+(1) Lowest Level Security:
+- Open access without any authentication at sign-on. Shall be used by public client.
+
+(2) Low Level Security:
+- Password based sign on where client authenticates itself to the meter using password.
+
+(3) High Level Securiy:
+- Data is secured via password and encryption.
