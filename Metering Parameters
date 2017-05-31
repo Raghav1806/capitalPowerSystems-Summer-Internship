@@ -1,0 +1,9 @@
+Differnt types of metering parameters:
+(1) Instantaneous parameters.
+(2) Block profile/load survey parameters.
+(3) Daily profile.
+(4) Parameters for accounting/billing.
+(5) General purpose quantities:
+	(a) Name plate details
+	(b) Programmable parameters
+(6) Event conditions.
