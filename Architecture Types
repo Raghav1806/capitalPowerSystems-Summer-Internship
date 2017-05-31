@@ -1,0 +1,36 @@
+Von-Neumann Architecture:
+(1) Single memory to be shared by both code and data.
+(2) Processor needs to fetch code in a separate clock cycle and data in another clock cycle. So it requires two clock cycles.
+(3) Higher speed, thus less time consuming.
+(4) Simple in design.
+
+Harvard Architecture:
+(1) Separate memories for code and data.
+(2) Single clock cycle is sufficient, as separate buses are used to access code and data.
+(3) Slower in speed, thus more time-consuming.
+(4) Complex in design.
+
+CISC: Complex Instruction Set Computer
+RISC: Reduced Instruction Set Computer
+
+CISC:
+(1) Larger set of instructions, easy to program.
+(2) Simpler design of compiler, considering larger set of instructions.
+(3) Many addressing modes causing complex instruction formats.
+(4) Instruction length is variable.
+(5) Higher clock cycles per second.
+(6) Emphasis is on hardware.
+(7) Control unit implements large instruction set using micro-program unit.
+(8) Slower execution, as instructions are to be read from memory and decoded by the decoder unit.
+(9) Pipelining is not possible.
+
+RISC:
+(1) Smaller set of instructions. Difficult to program.
+(2) Complex design of compiler.
+(3) Few addressing modes, fix instruction format.
+(4) Instruction length varies.
+(5) Low clock cycle per second.
+(6) Emphasis is on software.
+(7) Each instruction is to be executed by hardware.
+(8) Faster execution, as each instruction is to be executed by hardware.
+(9) Pipelining of instructions is possible, considering single clock cycle.
