@@ -1,0 +1,37 @@
+Data Exchange for Electricity Meter:
+- Reading, tariff and load control.
+- Data Concentrator: A device used for collecting data from various users and submit it to host computer.
+- Host Computer: Computer system which can collect data remotely from a meter or data concentrator.
+- A meter shall support minimum 2 ports for data communication:
+	(a) P1 - Electrical Port
+	(b) P2 - Optical Port
+- The meter shall support 3 associations in the management logical device.
+	(1) Public Client Association (PC)
+		(a) Meters' real time clock
+		(b) Meters' serial number
+	(2) Meter Reader Association (MR)
+		(a) Profile objects allowing bulk collection of data.
+		(b) Simple objects allowing access to items in instantaneous parameter list.
+	(3) Utility Settings Association (US)
+		(a) All objects accessible via MR association.
+		(b) Simple and compound objects allowing tarrification and configuration of meter.
+
+- What is DLMS/COSEM
+Automatic Meter Reading, or more general - Demand Side Management - needs universal definitions, needs communication standards. DLMS/COSEM is the common language so that the partners can understand each other.
+
+- DLMS: Device Language Message Specification
+	- A generalized concept for abstract modelling of communication entities.
+
+- COSEm: COmpanion Specification for Energy Metering
+	- Sets the rules, based on existing standards, for data exchange with energy meters.
+
+- DLMS/COSEM is:
+(1) An object model, to view the functionality of the meter, as it is seen at its interface(s).
+(2) An identification system for all metering data.
+(3) A messaging method to communicate with the model and to turn the data to a series of bytes.
+(4) A transporting method to carry the information between the metering equipment and the data collection system.
+
+- OBIS Code: OBject Identification System
+Defines identification codes for all data in DLMS/COSEM compliant metering equipment. OBIS codes are meaningful combinations of values in each of the six value groups A to F in a hierarchical structure. They are used as logical names of COSEM objects and - together with class_Id and version_Id - unambiguously identify all COSEM object instances. They are also used to identify data on the display of metering equipment. 
+
+General OBIS Code looks like: a.b.94.91.e.f

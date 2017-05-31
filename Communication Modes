@@ -1,0 +1,47 @@
+Their are different possible communication methods through which elecreonic meters can interact whith outside world, generally UART is used in smart electrical meters.
+
+C3: Used to denote 1-phase electric meter.
+C2: Used to denote 3-phase electric meter.
+
+(*) CMRI: Common Meter Reading Instrument.
+(*) BCS: Base Computer Software.
+
+(1) UART: Universal Asynchronous Receiver/Transmitter
+- Computer hardware device for asynchronous serial communication.
+- Data format and transmission speeds are configurable.
+- Acts as an intermediary between parallel and serial interfaces.
+- Responsible for both sending and receiving serial data.
+- Two UARTs can communicate directly with each other.
+- UARTs transmit data asynchronously
+	- No clock signal is required to synchronize output of bits from transmitting UART to sampling of bits by UART.
+- Transmitting UART adds start and stop bits to the data packet being transferred.
+- After transmitting UART gets parallel data from data bus, it adds start bit, parity bit and stop bit, creating a data packet.
+
+(2) SPI communication: (Serial Peripheral Interface)
+- Synchronous.
+- MOSI: Line for master to send data to slave.
+- MISO: Line for slave to send data to master.
+- SCLK: Line for clock signal.
+- SS/CS: (Slave Select/Chip Select): Line for master to select which slave to send data to.
+- Multiple Slaves are possible in this system.
+
+(3) I2C comunication: 
+- Synchronous.
+- Can connect multiple slave to a single master.
+- Multiple master controlling multiple/single slave.
+- SDA (Serial Data): Line for master and slave to send and receive data.
+- SCL (Serial CLock): Line that carries clock signal.
+(a) Start Condition
+(b) Stop Condition
+(c) Address frame: Address of slave
+(d) Read/Write bit: Whether master sending data or vice versa
+(e) ACK/NACK bit: Received from receiver to sender
+(f) Data frame
+
+Steps invlolved in I2C communication:
+- Master sends start condition to every connected slave.
+- Master sends each slave 7 or 10 bit address of slave.
+- Each slave compares the address sent from master to its own address. If it matches - ACK is returned, else NACK is returned.
+- Master sends or receives data frame.
+- After each data frame has been transferred, receiving device returns ACK bit to sender.
+- To stop data transmission, master sends stop condition to slave tag.
