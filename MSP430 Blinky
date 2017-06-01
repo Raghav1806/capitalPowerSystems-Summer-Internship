@@ -1,0 +1,24 @@
+- The simplest way to get the program to work is with some type of delay loop. The launchpad has green LED connected to P1.0 and a red LED connected to P1.6
+
+- The MSP430 includes a special timer called the Watchdog Timer (WDT). Its function is to reset the CPU if it gets stuck (ie. the watchdog timer runs out). For now, we don't need our program to reset on us, so we need to first turn this timer off.
+
+- To turn off the WDT, we can use the header-defined value WDTHOLD.
+WDTCTL = WDTPW + WDTHOLD;
+
+#include<msp430g2211.h>
+
+void main(){
+	unsigned int count;		// loop counter
+	WDTCTL = WDTPW + WDTHOLD;	// disable watchdog
+
+	P1OUT = 0;			// initialize LED off
+	P1DIR = BIT0;			// P1.0 output
+
+	while(1){	
+	P1OUT |= BIT0;
+		for(count=0; count<60000; count++);
+			P1OUT &= ~BIT0;
+		for(count=0; count<60000; count++);	// delay
+	}
+
+}
