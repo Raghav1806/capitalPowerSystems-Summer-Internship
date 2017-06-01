@@ -1,0 +1,7 @@
+- The watchdog timer (WDT) is on by default, it's a useful thing to have in more complex applications, but trips a lot of new people up. They often will not service the WDT in their code or include an interrupt service routine (ISR) to handle the WDT event, so, when their chip keeps resetting they become very frustrated. Additionally, the sample programs are, for the most part, not trying to demonstrate the WDT so it's turned off.
+
+- Initialsation might take longer than a single WDT tick, but require interrupts to be disabled. This means that if you rely on, say, a timer ISR to reset the timer, you could get into an infinite boot loop.
+
+- You don't necessarily know the state of the timer register on all MCUs (ie, the next tick could be much sooner than expected, as the register might not start at 0).
+
+
