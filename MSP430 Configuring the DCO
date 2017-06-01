@@ -1,0 +1,12 @@
+- DCO (Digitally Controlled Oscillator) is the easiest of the clock sources to configure, as it requires no external parts and is controlled completely by software.
+- DCO is configured with two registers: DCOCTL and BCSCTL1.
+- There are 128 distinct frequencies available to the DCO.
+
+- We are able to select the frequency we use with the RSELx bits in BCSCTL1 (select range 0 to 15) and the DCOx bits in DCOCTL (select step 0 to 7). [use datasheet].
+
+- Notation: DCO(r,s) - r->range, s->step
+
+- SRSEL, SDCO give the ratio of subsequent ranges and steps.
+(1) SRSEL: (r+1,s)/(r,s)
+(2) SDCO: (r,s+1)/r(s)
+This allows to get a value for any of the possible combinations.
