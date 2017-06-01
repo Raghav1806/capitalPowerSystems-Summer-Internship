@@ -1,0 +1,48 @@
+- Launchpad platform includes two buttons, one is connected to P1.3 and the other to the RST/SBWTDIO pin (pin 16).
+
+- Unpressed is logic 1, and pressed is logic 0. In pull up resistor configuration.
+- It can be reversed if we use pull down configuration.
+
+- We will configure two LEDs as outputs and P1.3 as an input.
+- We need an ability to tell the MSP430 to check the state of the button periodically, we call this polling. When the program reaches the point where it is waiting for the user to push the button, it should check and recheck the button until it sees that it has been pressed.
+- Since the button is attached to P1.3, bit 3 of P1IN tells us if the button is pressed or unpressed. 
+- We can extract just the value of bit 3 by using the & operator.
+
+- A simple demo of configuring push-buttons on input pins
+
+#include<msp430g22>
+
+#define redLED 	BIT0
+#define grnLED 	BIT6
+#define BTN	BIT3
+
+void delay(){
+unsigned int count;
+for(count=0;count<60000;count++);
+}
+
+void main{
+unsigned int flash;
+WDTCTL = WDTPW + WDTHOLD;
+
+P1OUT = 0;
+P1DIR |= redLED+grnLED;		// LED pins set as output, BTN is
+				// still input by default
+
+while(1){
+		for(flash=0; flash<7; flash++){
+			P1OUT |= redLED;	// red LED on
+			delay();
+			P1OUT &= ~redLED;	// red LED off
+			delay();
+		}
+		while((P1IN & BTN) == BTN);	// wait for button press
+		for(flash=0 ;flash<7; flash++){
+			P1OUT |= grnLED;	// green LED on
+			delay();
+			P1OUT &= ~grnLED;	// green LED off
+			delay();
+		} 
+		while((P1IN & BTN) == BTN);	// wait for button press
+	}
+}
