@@ -1,0 +1,23 @@
+- x2xx family of MSP430 uses BCS+ (Basic Clock System +), which provides MSP430 with 3 different clocks.
+- This is to compromise between systems that need speed and the ability to minimize power consumption.
+
+- Three clocks available in BCS+
+(1) MCLK: This is the master clock, the one that drives the processor and times the commands in your program.
+(2) SMCLK: The Sub-Main Clock is a secondary clock that is often used by other peripherals. It can be the same frequency as MCLK or different, depending on the application.
+(3) ACLK: The Auxiliary clock is usually timed outside the MSP430 and is typically used for peripherals.
+
+- There are also upto 4 sources available in BCS+ to drive each of the three clocks.
+(1) LFXT1CLK: 
+Low frequency crystal. 32,768 Hz crystal can be connected to MSP430 for low power, high accuracy timing. Other resonators and external signals can be used for this source.
+
+(2) XT2CLK: 
+Used with high frequency crystal. It can also be used for other resonators and external signals.
+
+(3) DCOCLK:
+The internal source is the digitally controlled oscillator.  Though not as accurate and stable as crystal sources, the DCO is still quite good and can be configured to operate at a wide range of frequencies.
+
+(4) VLOCLK:  
+The MSP430 includes a second internal oscillator for very-low power, very-low frequency applications.  The VLO can run slower than the LFXT1 watch crystal, and typically is used at about 12 kHz.
+
+- MCLK and SMCLK can use any of the four sources, ACLK uses only LFXT1 or VLO.
+
