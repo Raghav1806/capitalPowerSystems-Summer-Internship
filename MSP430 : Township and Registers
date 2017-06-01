@@ -1,0 +1,34 @@
+MSP430 follows Von-Neumann architecture.
+- All the memory and information available to the processor is available in one place.
+
+Registers:
+- Collection of addresses.
+- Controls the function of various parts of the processor and its peripherals.
+- Grouped into three sections:
+	- Special Function Registers
+	- 8 bit peripherals (parts that need only 8 bits to read instructions)
+	- 16 bit peripherals
+- Special sections of memory that configure the device and tell us when something important happens.
+
+PxIN:
+- Input register for a port is a read-only value. When a pin is selected to be an input, reading the value of the bits tells you the voltage currently on that pin. 
+- As it is a digital system, there is a particular threshold built into the device such that any voltage over that value is read as 1 and any voltage read below is read as 0.
+
+PxOUT:
+- Output register for a port is writable. Like input, a 0 corresponds to voltage on Vss, and a 1 corresponds to the voltage on Vcc.
+
+PxDIR:
+- The direction register determines whether a pin is an input, or an output. You can't change a pin's behaviour in the middle of your program.
+
+PxIE: Interrupt Enable
+PxIES: Interrupt edge select
+PxIFG: Interrupt flag register
+
+Interrupt:
+- Special message to CPU to hold on what it's currently doing and take care of the special circumstance. Once the interrupt has been satisfied, the CPU returns to where it was before.
+
+PxSEL:
+- Most of the port pins have multiple functions. The selection register determines what function a pin takes on. Changing the bits in PxSEL changes the behaviour of the pins.
+
+PxREn: Resistor enable register
+- It is helpful to pull the voltage up to Vcc or down to Vss, such as when you attach a push button to a pin.
