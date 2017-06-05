@@ -1,0 +1,25 @@
+ISR: Interrupt Service Routine
+
+MSP430 is designed with a clean and efficient procedure to handle interrupts.
+(1) If a peripheral's interrupt enabled, the appropriate signal sets the interrupt flag in one of the peripheral's registers.
+(2) If the processor is allowing interrupts, the presence of a peripheral interrupt flag sets a general flag to the processor.
+(3) The processor finishes any instruction it's currently doing.
+(4) The processor saves its place by copying the address where it's currently executing instructions (the value of Program Counter register) to the memory stack.
+(5) The processor saves its current status by pushing the status register onto the stack.
+(6) The interrupt that currently has the highest priority is selected if there are multiple flag set. 
+(7) The interrupt flag is cleared, unless the peripheral has more than one type of interrupt. 
+(8) The SR is cleared, which disables any further interrupts during the ISR handling and wakes up the processor from any low power mode.
+	- Only "maskable" interrupts are disabled by the SR clear, this means "non maskable" interrupts, such as reset, are still possible during an ISR.
+(9) The address of the interrupt vecor is copied to the PC, directing the processor to start executing code from that address on.
+
+Every ISR requires some special syntax:
+
+#pragma vector = <VECTOR_NAME>
+__interrupt void <ISR_NAME> (void){
+		// ISR Code
+	}
+
+Unused Interrupts:
+If an interrupt is called and no ISR is written for it, the results are unpredictable, depending on what value is inside the interrupt vector.
+(1) The safest method to protect from this is to write an ISR for every interrupt, doing nothing, or perhaps entering an infinite loop, for interrupts not used.
+(2) Another way to handle this problem is to be certain that unused interrupts are disabled so that they can't ever flag the processor. 
