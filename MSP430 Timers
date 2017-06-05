@@ -1,0 +1,37 @@
+Timers can tell time and count. Counting and timing can be used for controlling the brightness of LEDs, controlling the angle of servo shafts, receiving sensor data that transmit in PWM etc.
+
+The timer and counter functions in the microcontroller simply count in sync with the microcontroller clock. Counter can only count upto either 256 (8 bit), or 65535 (16 bit). That's far from 1MHz standard microcontroller frequency.
+
+The microcontroller provides a very useful feature called prescaling. It is simply a way for the counter to skip a certain number of microcontroller clock ticks.
+
+Possible prescaling: 8, 64, 256, 1024.
+-> If prescaling is 64 => for 64 clock cycles, count would be one.
+
+
+Timer: Specialized type of clock which is used to measure time intervals.
+Counter: Device that stores the number of times a particular event or process occurred, wrt clock signal.
+
+
+Peripherals: Hardware that may be built into the chip itself or added by us.
+
+Timer: Counting mechanism that is tied to some type of regular interval provided by a clock. 
+Timer_A peripheral is a 16-bit timer. It counts from 0 to 0xFFFF.
+
+Timer_A operates in three modes:
+(1) Continuous mode: Counts from 0 to 0xFFFF and then "rolls over" to 0 again.
+(2) Up mode: Just like continuos mode, counts up and rolls over to 0. However, this mode lets you choose how high up the timer counts before rolling over.
+(3) Up/Down mode: Rather than rolling over to 0, it turns around and counts down to 0.
+
+Timer_A has the ability to set "checkpoints" in its counting. These checkpoints are called Capture/Compare registers. The most basic use of these registers is to set values at which the counter flags the processor to do something special.
+
+There are atleast seven registers used in any device with the Timer_A peripheral.
+(1) TACTL - Timer_A control register is used to set up the link between timer and a clock and select the mode used.
+	- TASSELx bits(8 and 9) tell the timer which clock to use as its source.
+	- The clock frequency can be divided by a further factor of 2, 4, or 8 using the IDx bits.
+	- The MCx bits select the particular mode for the timer to use.
+	- TACLR is bit 2. If you write 1 to this bit, it resets the timer. MSP430 automatically reset this bit to 0 after resetting the timer.
+	- TAIE and TAIFG (bits 0 & 1) control the ability of the timer to trigger interrupts.
+(2) TAR - The Timer_A register is the actual counter, reading this register reports the current value of the counter.
+(3) TACCRx - Timer_A capture/compare registers.
+(4) TACCTLx
+(5) TAIV - Timer_A interrupt vector register, since there are multiple types of interrupts that can be flagged by Timer_A, this register holds details on what interrupts have been flagged.
