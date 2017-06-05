@@ -1,0 +1,7 @@
+Q: Why is watchdog timer disabled in MSP430 programs?
+
+WDTCTL = WDTPW | WDTHOLD;
+
+Ans: Even if your application is normally capable of resetting the timer correctly, it may not be able to do so during the initialisation code, mainly because initialisation might take longer than a single WDT tick, but require interrupts to be disabled. This means that if you rely on a timer ISR to reset the timer, you could get into an infinite boot loop.
+
+We can re-enable the watchdog timer immediately before turning on interrupts .
