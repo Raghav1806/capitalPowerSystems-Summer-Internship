@@ -1,0 +1,30 @@
+GPIO Interrupt Example:
+- The launchpad button is on P1.3. The pin needs to be configured as an input. Since the default state of the pin is logic 1, a high-low transition should be used to signal the interrupt.
+
+P1IES |= BIT3;	// high->low is selected with IES.x = 1
+P1IFG &= ~BIT3;	// to prevent an immediate interrupt, clear the flag for P1.3 before enabling the interrupt
+
+P1IE |= BIT3;	// Enable interrupts for P1.3
+
+-> Interrupt has been enabled for P1 now, and a high-low transition caused by the button press will set the interrupt flag in P1IFG. The processor, however, is not set to recognize maskable interrupts like P1IFG. We can turn on the interrupts with:
+
+_enable_interrupt();
+
+- Next we need to write the ISR:
+
+#pragma vector = PORT1_VECTOR
+__interrupt void P1_ISR(void){
+	switch(P1IFG & BIT3){
+		case BIT3:
+			P1IFG &= ~BIT3;	// clear the interrupt flag
+			BCSCTL1 = bcs_vals[i];
+			DCOCTL = dco_vals[i];
+			if(++i == 3)
+				i = 0;
+			return;
+		default:
+			P1IFG = 0;
+
+	return;
+	}
+}
