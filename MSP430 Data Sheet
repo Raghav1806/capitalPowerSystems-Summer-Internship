@@ -1,0 +1,60 @@
+MSP430 (Mixed Signal Microcontroller)
+
+Features:
+(1) Low supply voltage range (1.8V-3.6V).
+(2) Ultra-Low power consumption
+	- Active mode: 230 uA at 1MHz, 2.2 V
+	- Standby mode: 0.5 uA
+	- Off mode (RAM retention): 0.1 uA
+(3) Five power saving modes.
+(4) Ultra fast wake up from standby mode in less than 1 us.
+(5) 16-Bit RISC architecture, 62.5 ns instruction cycle time.
+(6) Basic clock module configuration:
+	- Internal frequencies up to 16 Mhz with four calibrated frequency.
+	- Internal very low power low frequency (LF) oscillator.
+	- 32 kHz crystal.
+	- External digital clock source.
+(7) Two 16 bit timer_A with three capture/compare registers.
+(8) Upto 24 capacitive touch enbled I/O pins.
+(9) Universal Serial Communication Interface (USCI)
+	- Enhanced UART supporting auto baudrate detection (LIN).
+	- IrDA encoder and decoder.
+	- Synchronous SPI.
+	- I2C.
+(10) On-Chip comparator for analog signal compare fuction or slope analog-digital (A/D) conversion.
+(11) A/D converter with internal reference, sample and hold, and autoscan.
+(12) Brownout detector.
+(13) Serial Onboard programming, no external programming voltage needed, programmable code protection by security fuse.
+(14) On-Chip emulation logic with Spy-Bi-Wire Interface.
+(15) Package options:
+	- TSSOP: 20 Pin, 28 Pin
+	- PDIP: 20 Pin
+	- QFN: 32 Pin
+
+- RISC Architecture: Reduced Instruction Set Computer
+- A computer that has a small set of simple and general instruction, rather than a large set of complex and specialised instructions.
+
+CPU: 
+- MSP430 CPU has a 16-bit RISC architecture.
+- CPU is integrated with 16 registers that provide reduced instruction execution time. The register to register operation execution time is one cycle of the CPU clock.
+R0: Program counter
+R1: Stack pointer
+R2: Status register
+R3: Constant generator
+R4-R15: General Purpose registers
+- Peripherals are connected to the CPU uisng data, address, and control buses, and can be handled with all instructions.
+
+Operating Modes:
+MSP430 has one active and five software selectable low-power modes of operation. An interrupt event can wake up the device from any of the low power modes, service the request, and restore back to the low-power mode on return from the interrupt program.
+
+Basic clock module provides following clock signals:
+	- Auxiliary clock, sourced either from a 32.768 KHz watch crystal or the internal LF oscillator.
+	- Main clock, the system clock used by CPU
+	- Sub-main clock, sub system clock used by the peripheral modules.
+
+Brownout: 
+The brownout circuit is implemented to provide the proper internal reset signal to the device during power on and power off.
+
+Watchdog timer:
+The primary function of a watchdog timer module is to perform a controlled system restart after a software problem occurs. If the selected time interval expires, a system reset is generated.
+
