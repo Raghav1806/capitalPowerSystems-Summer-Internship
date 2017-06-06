@@ -1,0 +1,24 @@
+Formulating the capacitance meter:
+We charge up the capacitor, then start the timer at the moment we start discharging. We stop the tier when the capacitor has discharged to a known point, then plug in the values into the formula:
+C = t/(R*ln(f))
+
+- We can use Comparator_A+ to trigger the timer when we reach our choden reference.
+
+- Interfacing the Comparator_A+ and Timer A modules:
+Following issues need to be resolved:
+(a) How do we minimize any delay in the timing due to delays from carrying out instructions? If we are not careful, a non-negligible amount of time can pass between when we start the capacitor discharge and the timer, or between the comparator trigger and the timer capture.
+(b) Smaller capacitor will discharge more quickly, leading to shorter measurement times. Larger capacitors take more time to charge up, and may not be fully charged when we start discharging.
+
+Feature of TImer_A Module: Capture
+Capturing can be used to do precise timing of events. In capture mode, the timer records the value in TAR into TACCRx at the moment when the capture is triggered. This trigger can come externally or internally. By configuring the timer in this way, we can record the timer value when the comparator output provides either a rising edge, or a falling edge.
+
+- We will connect resistor to a timer output. [TA0.0]
+- The junction between the resistor and the capacitor is tied to comparator input, and other end of capacitor is connected to ground.
+- We start charging the capacitor by setting TA0.0, and wait for some specific amount of time for capacitor to charge.
+- The output is then reset (grounded) at the time specified in TACCR0. 
+- While the cpacitor's voltage is above the reference voltage, the output is set at 1 [We tied RC circuit to V+ and reference to V-].
+- When charge drops below that value, the comparator output falls, triggering a capture in the timer, recorded in TACCR1.
+- Difference in time b/w TACCR1 and TACCR0 is an accurate measurement of the decay time of the RC circuit from Vcc to Vref.
+
+
+- We have to handle cases where time taken for discharge might be greater than 2^16 uS. In that case, TAR rolls over, and starts counting over again. Hence, we need to account for any rollovers that may occur.
