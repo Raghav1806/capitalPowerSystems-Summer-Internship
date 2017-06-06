@@ -1,5 +1,11 @@
 Embedded System : Embedded Software + Embedded Hardware
 
+Normally, an embedded system is composed of following:
+(1) An embedded microcontroller.
+(2) A programming/debugging interface for microcontroller.
+(3) Microcontroller support circuitry.
+(4) Application specific circuitry.
+
 Computer System with a dedicated function within a larger mechanical or electrical system.
 
 Common properties of Embedded System :
