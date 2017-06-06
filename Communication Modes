@@ -1,5 +1,5 @@
 Their are different possible communication methods through which elecreonic meters can interact whith outside world, generally UART is used in smart electrical meters.
-
+- By default, UART is high.
 C3: Used to denote 1-phase electric meter.
 C2: Used to denote 3-phase electric meter.
 
