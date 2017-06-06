@@ -1,0 +1,6 @@
+MSP430 ADC10 peripheral uses a Successive-Approximation-Register ADC [SAR ADC]
+
+SAR works similar to binary search:
+If we take a single comparator and use half of our reference voltage, we get our first bit - if it's above 1/2 Vref, set it to 1; if below, set it to 0. Then value of comparator is set to 1/4 Vref or 3/4 Vref (if first bit is 0 or 1 respectively).
+
+In ADC10, 10 such measurements are taken.
