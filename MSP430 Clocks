@@ -23,3 +23,5 @@ The MSP430 includes a second internal oscillator for very-low power, very-low fr
 
 - MCLK and SMCLK can use any of the four sources, ACLK uses only LFXT1 or VLO.
 
+A phase-locked loop (PLL) is an electronic circuit with a voltage or voltage-driven oscillator that constantly adjusts to match the frequency of an input signal. PLLs are used to generate, stabilize, modulate, 
+demodulate, filter or recover a signal from a "noisy" communications channel where data has been interrupted.
