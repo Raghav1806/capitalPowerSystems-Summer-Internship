@@ -1,6 +1,8 @@
 - x2xx family of MSP430 uses BCS+ (Basic Clock System +), which provides MSP430 with 3 different clocks.
 - This is to compromise between systems that need speed and the ability to minimize power consumption.
 
+External crystals should be used in applications that require more accuracy than is available from the microcontroller. They add more size and cost, but enable more accurate clocks.
+
 - Three clocks available in BCS+
 (1) MCLK: This is the master clock, the one that drives the processor and times the commands in your program.
 (2) SMCLK: The Sub-Main Clock is a secondary clock that is often used by other peripherals. It can be the same frequency as MCLK or different, depending on the application.
