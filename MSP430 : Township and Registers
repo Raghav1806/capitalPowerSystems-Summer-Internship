@@ -2,6 +2,7 @@ MSP430 follows Von-Neumann architecture.
 - All the memory and information available to the processor is available in one place.
 
 Registers:
+- A register is a very small amount of very fast memory that is built into the CPU in order to speed up its operations by providing quick access to commonly used values. 
 - Collection of addresses.
 - Controls the function of various parts of the processor and its peripherals.
 - Grouped into three sections:
