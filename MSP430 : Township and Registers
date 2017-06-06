@@ -33,3 +33,5 @@ PxSEL:
 
 PxREn: Resistor enable register
 - It is helpful to pull the voltage up to Vcc or down to Vss, such as when you attach a push button to a pin.
+
+-> Bit 0 of P1OUT controls P1.0, bit 1 controls P1.1 and so forth.
