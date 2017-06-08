@@ -1,0 +1,22 @@
+Digital pins are the main communication element that a microcontroller has with the outside world.
+
+Pin multiplexing:
+- As microcontrollers have limited number of pins, manufacturer has to multiplex the pins among the internal modules.
+
+PX.Y: 
+X - Port Number
+Y - Pin Number in that port
+
+Each port is assigned several 8 bit registers that control them and provide information about their current status. Each register is designated PxYYY, x->port number and YYY->name of functionality of that register.
+
+- PxSEL: This register selects what functionality is shown at the pin, GPIO or an internal module.
+- PxDIR: If the pin is set for GPIO in PxSEL, this register selects the pin direction - Input or Output.
+- PxOUT: If the pin is set for GPIO in PxSEL and if the pin has output direction as set by PxDIR, this selects whether it is HIGH or LOW.
+- PxIN: If the pin is set for GPIO in PxSEL and has input direction set by PxDIR, this selects represents level at input (HIGH or LOW). 
+- PxIFG: Interrupt Flag for the corresponding I/O pin and it is set when that pin experiences the appropriate signal edge transition (either high to low or low to high).
+- PxIES: Interrupt transition selection register. If a bit is 0, the pin will generate an interrupt and flag transition is low to high. A 1 in the bit will generate an interrupt and a flag if transition is high to low.
+- PxIES: Interrupt enable register. If a bit is set to 1, a pin will generate an interrupt if he appropriate transition has occurred.
+
+In addition, in some of the MSP430 devices, there are registers related to pullup/pulldown resistors:
+- PxREN: Internal pullup/pulldown resistor is enabled for the specified pin if a bit is set to 1. A 0 disables the resistor.
+- PxOUT: If a pin's pullup/pulldown resistor is enabled, the corresponding bit in the PxOUT register selects pull-up (bit = 1) or pull-down(bit = 0).
