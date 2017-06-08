@@ -45,3 +45,9 @@ Steps invlolved in I2C communication:
 - Master sends or receives data frame.
 - After each data frame has been transferred, receiving device returns ACK bit to sender.
 - To stop data transmission, master sends stop condition to slave tag.
+
+(*) Bit Banging: Bit banging refers to the implementation of a digital communications protocol from GPIO primi-
+tives. In other words, using a predefined sequence of high and low on the GPIO, we can emulate
+a protocol such as SPI. When dedicated hardware is unavailable (such as when you’ve used up all
+possible modules that are available), bit banging may be one of few choices left without resorting
+to using a different device.
