@@ -1,0 +1,7 @@
+In reality, a switch is not perfect. The mechanical construction of switch results in internal vibrations (bouncing) in which metal bounce until they settle and make contact. During this time, a switch can result in many connections/disconnections that a microcontroller can interpret as multiple interrupts, which can cause issues in the end application.
+
+- Two approaches to for debouncing: Analog and Software.
+
+(1) Analog approach: Use a capacitor and schitt trigger. When capacitor is added to switch input, it is pulled high by pull up resistor and therefore is charged. When key is pressed, capacitor will resist change in voltage (switch is grounding the input). Capcitor will discharge, preventing the bouncing of the switch contact. The larger the RC tie constant, the more bouncing will be reduced. When user releases the button, the capcitor slowly charges and any bounces are filtered. Because of slow transition, the I/O input will transition in an unknown state which could cause problems. A schmitt trigger is then required to avoid any problems.
+
+(2) Software approach: Using interrupts we can detect the switches high to low and low to high transitions and ignore those that are inside of the bounce window by waiting for a set amount of time (using a timer or a for loop to waste cycles) before accepting new transitions as actual user switch presses.
