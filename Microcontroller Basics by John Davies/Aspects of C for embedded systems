@@ -1,0 +1,11 @@
+Declarations:
+	- const: Value should not be modified.
+	- volatile: Variable may appear to change "spontaneously" with no direct action by user's program.
+
+The peripheral registers associated with input ports must be treated as volatile in an embedded system.
+
+Layout of assembly language:
+(1) label- starts in the first column and maybe followed by a colon (:) for clarity.
+(2) operation- either an instruction, which is translated into binary machine code for the processor itself, or a directive, which contrlos the assembler.
+(3) operands- data needed for this operation (not always required).
+(4) comment- the rest of the line, following a semicolon(;).  
