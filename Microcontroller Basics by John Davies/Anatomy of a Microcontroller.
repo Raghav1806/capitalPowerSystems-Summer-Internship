@@ -1,0 +1,35 @@
+Anatomy of a typical small Microcontroller
+
+(1) Central processing unit:
+	- Arithmetic logic unit, performs computation.
+	- Registers are needed for basic operations of the CPU, such as program counter, stck pointer, and status register.
+	- Further registers to hold temporary results.
+	- Instruction decoder and other logic to control the CPU, handle resets, interrupts etc.
+
+(2) Memory for program: Nonvolatile, ROM.
+(3) Memory for data: RAM, usually volatile.
+(4) Input/Output ports.
+(5) Address and data buses.
+(6) Clock.
+
+Peripherals:
+(1) Timers:
+	- The time at which transitions occur on an input can be recorded.
+	- Outputs can be driven on & off automatically at a specified frequency.
+	- Provide a regular tick that can be used to schedule tasks in a program.
+
+(2) Watchdog timer: Safety feature, resets the processor if the program is stuck in an infinite loop.
+
+(3) Communication Interfaces: SPI, UART etc.
+
+(4) Nonvolatile memory for data.
+
+(5) Analog to Digital converter.
+
+(6) Digital to Analog converter.
+
+(7) Real Time Clock: Needed in applications that must track time of the day.
+
+(8) Monitor, background debugger, and embedded emulator.
+
+-> MSP430 has von-neumann architecture. [RISC]
