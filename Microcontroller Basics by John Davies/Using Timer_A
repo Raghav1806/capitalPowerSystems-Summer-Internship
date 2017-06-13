@@ -1,0 +1,21 @@
+Automatic Control: Flashing a light by polling Timer_A
+- Software delay loops are a waste of processor because it is not available for more useful actions. All microcontrollers therefore have a special hardware to act as a timer. The heart of timer is just a counter fed from clock. Timer has no idea of real time. It just counts the clock cycles. The recorded time is as accurate as the frequency of the clock.
+
+- Timer_A is based on a 16 bit register TAR, which counts the clock pulses. There are also several capture/compare channels, which are usually used to trigger events and drive outputs directly.
+
+- The simplest way of generating a fixed delay with Timer_A is to wait for TAR to overflow. This is normally done by requesting an interrupt.
+
+- The operation of Timer_A is controlled by reading from and writing to memory-mapped registers, as for all peripherals. We need only Timer_A Control Register TACTL.
+
+Function of each bit in TACTL:
+(1) Timer_A clock source select, TASSELx: There are four options for the clock: internal SMCLK or ACLK or two external sources. We use SMCLK because it is always available, which needs TASSELx = 10;
+
+(2) Input divider, IDx: Frequency of clock can be divided before it is applied to timer, which extends period of counter.
+
+(3) Mode control, MCx: The timer has four modes. By default it is off to save power. We use the simplest continuous mode, in which TAR simply counts up through its full range of 0x0000-0xFFFF and repeats. Thsi needs MCx = 10;
+
+(4) Timer_A clear, TACLR: Setting this bit clears the counter, the divider, and the direction of count. It is usually a good idea to clear the counter whenever the timer is reconfigured to ensure that the first period has expected duration.
+
+(5) Timer_A interrupt enable, TAIE [not used]: Setting this bit enables interrupts when TAIFG becomes set.
+
+(6) Timer_A interrupt flag, TAIFG: This bit can be modified by the timer itself or by a program. It is raised (set) by the timer when the counter becomes 0. In continuous mode this happens when the value in TAR rolls over from 0xFFFF to 0x0000.
