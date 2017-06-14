@@ -1,0 +1,15 @@
+- Port P1 input, P1IN: This register is read-only and volatile. It does not need to be initialized because its contents are determined by external signals.
+
+- Port P1 output, P1OUT: Writing sends the value to be driven to each pin if it is configured as a digital output. The register is not initialised and you should write to P1OUT before configuring the pin for output.
+
+- Port P1 direction, P1DIR: clearing a bit to 0 configures a pin as an input (default). Writing a 1 switches the pin to become an output.
+
+- Port P1 resistor enable, P1REN: setting a bit to 1 activates a pull-up or pull-doen resistor on a pin.
+
+- Port P1 selection, P1SEL
+
+- Port P1 interrupt enable, P1IE: enables interrupt when value on an input pin changes.
+
+- Port P1 interrupt edge select, P1IES: can generate interrupt either on a positive/negative edge.
+
+- Port P1 interrupt flag, P1IFG: A bit is set when the selected transition has been detected on the input.
