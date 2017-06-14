@@ -16,7 +16,8 @@ void main(){
 
 	__enable_interrupt();			// Enable interrupts
 	while(1){
-						// loop forever doing nothing, interrupts do the work
+						// loop forever doing nothing, interrupts do the work (MSP430 is in Low Power Mode)
+	__low_power_mode_0 ();
 	}
 }
 
