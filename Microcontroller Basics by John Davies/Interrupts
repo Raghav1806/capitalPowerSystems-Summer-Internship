@@ -1,0 +1,26 @@
+Interrupts are requested by hardware at unpredictable times rather than called by software in an orderly manner. Interrupts are commonly used for:
+(1) Urgent tasks that must be executed proptly at higher priority than the main code.
+(2) Infrequent tasks, such as handling slow input from humans. This saves the overhead of regular polling.
+(3) Waking the CPU from sleep. This is particularly important in MSP430, which typically spends much of its time in a low power mode and can be awakened only by an interrupt.
+
+The code to handle interrupt is called interrupt handler or Interrupt Service Routine (ISR).
+
+Interrupts arise at unpredictable times, which means that an ISR must carry out its action and clean up thoroughly so that the ain code can be resumed without error - it should not be able to tell that an interrrupt occurred.
+
+Each interrupt has a flag, which is raised (set) when the condition for interrupt occurs.
+
+Each interrupt has distinct priority, which is used to select which vector is taken if more than one interrupt is active when the vector is fetched.  
+
+- Interrupts must be handled in such a way that the code that was interrupted can be resumed without error. This means that particular value in the CPU register must be restored. The hardware can take 2 approaches:
+	(1) Copies all registers, which are saved on the stack automatically as part of process for entering an interrupt. The disadvantage is that the process is slow, which means that the response to an interrupt is delayed.
+
+	(2) The second approach is for the hardware to save the absolutely minimum, which is the return address in the PC as in a subroutine.[MSP430 uses this approach]
+
+- What happens when an interrupt is requested?
+(1) Any currently executing instruction is completed if the CPU was active when the interrupt was requested. MCLK is started if the CPU was off.
+(2) The PC, which points to the next instruction, is pushed onto the stack.
+(3) The SR is pushed onto the stack.
+(4) The interrupt with highest priority is selected if multiple interrupts are waiting for service.
+(5) Interrupt request flag is cleared automatically for vectors that have a single source.
+(6) The SR is cleared. 
+(7) Interrupt vector is loaded into the PC and the CPU starts to execute the interrupt service routine at that address. 
