@@ -1,0 +1,28 @@
+(1) Comparator: Simple and cheap module that cannot perform a conversion by itself but is usually used with Timer_A to measure the time-constant of an external RC circuit. There are 2 versions, Comparator_A and Coparator_A+.
+(2) Successive approximation ADC: Relatively fast and easy to understand. There are 2 versions, ADC10 and ADC12, which give 10 and 12 bits of output.
+(3) Sigma-delta ADC: More complicated ADC that works in quite different way to give higher resolution (more bits) but at a slower speed. There are 2 versions, SD16 and SD16_A, which give a 16 bit output.
+
+- Comparator_A: An analog comparator compares the voltages on its two input terminals, V+ and V-. Its output is high if V+>V- and low if V+<V-. Thus, it provides a basic bridge between the analog and digital domains and acts like a 1-bit ADC.
+
+- Capacitive Touch sensing with Comparator_A:
+The sensor works by detecting the change in capacitance when a finger is brought over it. Here, the capacitor is formed by two conducting pads on the bottom of an insulated sheet. The pads are often no more than enlarged tracks on a PCB, with the board itself acting as an insulator between the plates of the capacitor. 
+One pad is connected to ground and the other acts as the sensor.
+- An electric field is created when a voltage is applied between the plates and the field lines go from one plate to another. Some of the lines remain in the insulator but others emerge into the air. When a finger is brought close to the gap between the pads, it distorts the electric field and therefore changes the capacitance. 
+
+- Successive approximation (SAR) ADC:
+- SARs work by homing in on the result using binary chopping. 
+	- The input voltage Vin is compared with the midpoint 1/2 Vfs of the full range.
+	- In this case Vin < 1/2 Vfd, so MSB = 0.
+	- We know that the input lies b/w 0 and 1/2 Vfs. The input is next compared with the midpoint of this range, 1/4 Vfs.
+	- We find Vin > 1/4 Vfs so next bit is 1.
+
+- Sigma-Delta ADC: [high precision, low speed]
+- Architecture:
+(1) The analog input goes into a difference amplifier, which subtracts(hence "delta") the current value of output to leave the error.
+(2) This error is integrated.
+(3) The output of the integrator is converted from analog to digital in an ADC. This is performed by a 1-bit ADC, which is just a comparator.
+(4) This digital signal is fed back and converted back to analog on a DAC so that it can be subtracted from the input, thus forming a feedback loop. The 1-bit DAC is no more than a switch.
+- The second part of ADC handles purely digital signals.
+(5) The digital signal is processed by a low-pass filter. This is needed because the stream of samples from the modulator can represent frequencies up to 1/2 f.
+(6) The filtered digital signal is then decimated to reduce he rate of samples. 
+
