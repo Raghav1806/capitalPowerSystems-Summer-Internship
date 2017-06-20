@@ -13,3 +13,30 @@
 - Port P1 interrupt edge select, P1IES: can generate interrupt either on a positive/negative edge.
 
 - Port P1 interrupt flag, P1IFG: A bit is set when the selected transition has been detected on the input.
+
+- Configuration of unused pins:
+(1) Wire the unused pins externally to a well defined voltage, either Vss or Vcc, and configure them as inputs.
+(2) Leave the pins unconnected externally but connect them internally to either Vss or Vcc by using pull down or pull up resistors, then configure them as inputs.
+(3) Leave the pins unconnected and configure them as outputs. [The value in output register does not matter.]
+
+- Analog aspects of "Digital" inputs:
+	- Inputs of 0-0.3 Vcc give logic 0.
+	- Inputs of 0.7 Vcc to Vcc give logic 1.
+- The apparent logical value as seen fro inside the microcontroller may oscillate wildly between 0 & 1. The voltage on inputs should therefore pass rapidly through the transition zone. In MSP430, inputs are provided with Schmitt triggers, which eleminates these problems.
+
+- A schmitt trigger has two desirable effects:
+(1) It turns slowly varying inputs, which might cause problems while they pass slowly through the undefined range of input voltages, into abrupt, clean logical transitions.
+(2) It eliminates the effect of noise on the input, provided that it is not large enough to span the gap between upward and downward thresholds.
+
+- Debouncing in hardware:
+(a) digital approach: useing SR flip-flop and SPDT switch.
+(b) analog approach using RC filter, followed by a schmitt trigger.  
+
+- Debouncing in software:
+(a) Simplest approach: Detect a transition from the switch, wait for a fixed delay, and test the input again.
+(b) More versaltile algorithms are typically based on counters or shift registers. These are updated at regular intervals of around 5ms, usually triggered by interrupts from a timer. The routine stores the current debounced state of the switch so that it can be compared with the raw input from the switch itself.
+	- No action is needed if the raw input matches the debounced state. If they differ, a down counter is started.
+	- The counter is decremented every time the routine is called, provided that the raw input still differs from the debounced state. The counter is reinitialized if the raw input has reverted to the debounced state.
+	- If the counter reaches 0, the raw input is accepted as the new debounced state. A flag can be set to indicate that the input has changed in the same way as the P2IFG flags are set by hardware.
+
+- Multiplexing LEDs: N(N-1) LEDs can be driven from N pins of a microcontroller.
