@@ -1,0 +1,57 @@
+Three common types of communication that current MSP430s can handle directly:
+(1) Serial peripheral interface (SPI)
+(2) Inter-integrated circuit (I2C) bus
+(3) Asynchronous serial communication (inaccurately, RS-232)
+
+- If no hardware is available, slow communication can be achieved by driving the pins using software, known as bit-banging.
+
+- SPI and I2C are typically used between a microcontroller and other devices on the same PCB, while asynchronous communication is used to exchange data with other equipment such as a PC.
+
+- Thus, asynchronous systems require special interface circuits. On the other hand, simple wires are usually sufficient for SPI and I2C provided all devices work at same voltage.
+
+- SPI and I2C are synchronous, which means that a clock signal is sent along with the data. The device that generates clock is called the master and other devices are called slaves.
+
+- No clock signal is transmitted in asynchronous communication. Information must therefore be sent in separate frames, each of which is short enough that the separate clocks in the transmitter and receiver remain synchronized.
+
+- SPI and I2C are often used to communicate with:
+	- Port expanders to increase the effective number of pins for digital input and output.
+	- ADCs and DACs
+	- Sensors with digital outputs, such as thermometers.
+	- External memory (dataflash, EEPROM)
+	- Real-time clocks
+	- Other processors
+
+(1) Serial Peripheral Interface (SPI):
+The concept of SPI is based on two shift registers, one on each device, which are connected to form a loop. The registers usually hold 8 bits. Each device places a new bit on its output from the MSB (most significant bit) of the shift register when the clock has a negative edge and reads its input into the LSB (least significant bit) of the shift register on a positive edge of clock. Thus a bit is transferred in each direction during each clock cycle. After 8 clock cycles, the contents of shift registers have been exchanged and the transfer is complete.
+
+(2) Inter-Integrated circuit bus (I2C):
+The I2C bus uses only two bidirectional lines:
+	- Serial Data	(SDA)
+	- Serial Clock	(SCL)
+
+- Transfers on the bus take place between a master and a slave. Each slave has a unique address, which is usually 7 bits long. The master starts the transfer, provides the clock, addresses a particular slave, manages the transfer, and finally terminates it. There may be more than one master on the bus although only one can be in control at a time.
+
+- Starting from the idle state with both SCL and SDA high:
+	- The master sends a start condition by pulling SDA low while SCL high.
+	- The master starts the clock and puts the first bit of the address SDA after SCL has gone low.
+	- The value on SDA is valid after SCL has gone high and is read by all slaves on the bus.
+	- The last two steps are repeated until all 7 bits of the address have been sent.
+	- The final bit of thte first byte specifies the direction for the rest of the transfer.
+	- The ninth bit is the acknowledgment, which is low and is sent by the slave that recognizes its address.
+	- The master must check that a slave acknowledges the address and abort the transfer if the low bit is missing.
+	- The next 8 bits are used to transmit 1 bute of data from the slave to the master. The master continues to provide the clock.
+	- The ninth bit is usually acknowledgment.
+	- There is a final cycle of the clock to set up the stop signal. The master pulls SDA low after the falling edge of the clock, which is the normal time for changing SDA.
+
+- Asynchronous Serial Communication:
+- format of data for asynchronous transmission:
+	- One low start bit
+	- Eight data bits, usually lsb first
+	- One high stop bit
+
+- Basic procedure for receiving a frame in UART
+	- Start timing at the falling edge that begins a start bit
+	- Sample the input after half a bit period to confirm a valid start bit
+	- Sample the input after a further complete bit period to read the first bit
+	- Repeat this until all 8 bits have been recieved, finishing with the msb
+	- Wait a further bit period and check that the input is high as expected for the stop bit. A framing error occurs if this bit is low.
