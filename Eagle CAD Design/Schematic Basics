@@ -1,0 +1,12 @@
+PCB design in EAGLE is a two-step process. First you design your schematic, then you lay out a PCB based on that schematic. EAGLE's board and schematic editors work hand-in-hand. A well designed schematic is critical to the overall PCB design process. It helps in catching errors before the board is fabricated, and helps to debug a board when soething doesn't work. 
+
+(1) Create a project
+(2) Create a schematic
+(3) Add parts to schematic using ADD tool
+(4) Wire up the schematic [Use NET tool and not WIRE tool] 
+(5) Use NAME, LABEL tool for naming component, etc.
+
+Tips and Tricks:
+(1) Names and values: every component on your schematic should have two editable text fields: a name and a value, using NAME and VALUE tool respectively.
+
+(2) Verifying connections: [using SHOW tool]

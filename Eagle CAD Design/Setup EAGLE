@@ -1,0 +1,63 @@
+PCBs are the backbone of every electronic gizmo. They're not flashy like microprocessors, or abundant like resistors, but they're essential to making all components in a circuit connect together just right.
+
+Why EAGLE?
+	- Cross platform - EAGLE can run on anything: Windows, Mac, even Linux.
+	- Lightweight
+	- Free/Low-cost
+	- Community support
+
+Limitations of free version:
+	- PCB is limited to maximum size of 100 * 80 mm
+	- Only two signal layers are allowed. 
+
+Composition of PCB:
+There are alternating layers of different materials which are laminated together with heat and adhesive such that the result is a single object.
+
+(1) FR4: The base material, or substrate, is usually fiberglass. This solid core gives the PCB its rigidity and thickness. 
+
+(2) Copper: The next layer is a thin copper foil, which is laminated to the board with heat and adhesive. 
+
+(3) Soldermask: The layer on top of the copper foil is called soldermask layer. This layer gives PCB its color. It is overlaid onto the copper layer to insulate the copper traces from accidental contact with other metal, solder, or conductive bits. This layer helps the user to solder to the correct places and prevent solder jumpers.
+
+(4) Silkscreen: The white silkscreen layer is applied on top of the soldermask layer. It adds letters, numbers, and symbols to the PCB that allow for easier assembly and indicators for humans.
+
+Terminology: Some terms that you may hear when dealing with PCBs - 
+(1) Annular ring: The ring of copper around a plated through hole in a PCB
+
+(2) DRC: Design rule check. A software check of design to make sure the design does not contain errors such as traces that incorrectly touch, traces too skinny, or drill holes that are too small.
+
+(3) Drill hit: Places on a design where a hole should be drilled, or where they actually were drilled on the board.
+
+(4) Finger: exposed metal pads along the edge of a board, used to create a connection between two circuit boards. 
+
+(5) Mouse bites: A number of drill hits are clustered close together, creating a weak spot where the board can be broken easily. 
+
+(6) Pad: A portion of exposed metal on the surface of a board to which a component is soldered.
+
+(7) Panel: A larger circuit board composed of many smaller boards which will be broken apart before use. 
+
+(8) Paste stencil: A thin, metal stencil which lies over the board, allowing solder paste to be deposited in specific areas during assembly.
+
+(9) Pick-and-place: The machine or process by which components are placed on a circuit board. 
+
+(10) Pogo pin: Spring-loaded contact used to make a temporary connection for test or programming purposes. 
+
+(11) Reflow: Melting the solder to create joints between pads and component leads.
+
+(12) Solder paste: Small balls of solder suspended in a gel medium which, with the aid of a paste stencil, are applied to the surface mount pads on a PCB before the components are placed. During reflow, the solder in the paste melts, creating electical and mechanical joints between the pads and components.
+
+(13) Solder jumper: A small, unwanted blob of solder connecting two adjacent pins on a component on a circuit board.
+
+(14) Surface mount: Allows components to be simply set on a board. This method of assembly allows boards to be populated quickly and easily.
+
+(15) Thermal: A small trace used to connect a pad to a plane. If a pad is not thermally relieved, it becomes difficult to get the pad to a high enough temperature to create a good solder joint. 
+
+(16) Thieving: Hatching, gridliness, or dots of copper left in areas of a board where no plane or traces exist.
+
+(17) Trace: A continuous path of copper on a circuit board.
+
+(18) V-score: A partial cut through a board, allowing the board to be easily snapped along a line. 
+
+(19) Via: A hole in a board used to pass a signal from one layer to another. 
+
+(20) Wave solder: A ethod of soldering used on boards with through-hole components where the board is passed over a standing wave of molten solder, which adheres to exposed pads and component leads. 

@@ -1,0 +1,53 @@
+To switch from schematic editor to the related board, simply click the generate/switch to board command. 
+
+The EAGLE board designer has layers just like an actual PCB, and they overlap too. A palette of colors is used to represent the different layers. [only top and bottom are available in free version]
+
+- Create a board from schematic, using Generate/Switch to icon. Our first job in this PCB layout should be arranging the parts, and then minimizing the area of our PCB dimension outline. PCB costs are usually related to the board size, so a smaller board is a cheaper board.
+
+- The way you arrange your parts has a huge impact on how easy or hard the next step would be. Following points should be taken into consideration:
+	- Don't overlap parts
+	- Minimize intersecting airwires: Limiting criss-crossing airwires as much as you can will make routing much easier in the long run. While you are relocating parts, RATSNEST button is used to get the airwires recalculate. 
+	- Part placement requirement: Some parts may require special consideration during placement. Ex. decoupling capacitor should be close to the IC.
+	- Tighter placement means a smaller and cheaper board, but it also makes routing harder. 
+
+Adjusting the dimension layer: 
+- Use the DELETE tool to erase all four of the dimension lines.
+- Use WIRE tool to draw a new outline. [go up to options and set the layer to 20 dimensions]
+- Starting at the origin, draw a box around the parts. 
+
+Routing the board:
+- Using the route tool. [using the ROUTE tool]
+- Layer: On a 2-layer board, you'll have to choose whether you want to start routing on the top(1) or bottom(16) layer.
+- Bend style
+- Width: 0.01" is a good default size. Wider traces can allow for more current to safely pass through. 
+- Via options: the shape, diameter, and drill defaults are usually perfect.
+
+- While routing, it's important to avoid two cases of overlap: copper over vias, and copper over copper. All of these copper traces are basically bare wire. If two signals overlap, they'll short out, and neither will do what it's supposed to.
+
+- If traces do cross each other, make sure they do so on opposite sides of the board. 
+
+- Placing Vias: Vias are really tiny drill holes that are filled with copper. We use them mid-route to move a trace from one side of the board to the other. 
+- To place a via mid-route, first left-click in the black ether between pins to "glue" your trace down. Then you can either change the layer manually in the options bar, or click your middle mouse button to swap sides, and continue routing to your destination. EAGLE will automatically add a via.
+
+Route Clearance:
+Make sure you leave enough space between two different signal traces. 
+
+Ripping up traces:
+Much like WIRE tool isn't actually used to make wires, the DELETE tool can't actually be used to delete traces. If you need to go back and re-work a route, use the RIPUP tool to remove traces. This tool turns routed traces back into airwires. 
+
+Checking for errors:
+- Ratsnest: To make sure you've actually routed all of the nets in your schematic. 
+- Design Rule Check: To load up the DRC, click the DRC icon, which opens up a dialog. The tabs in this view (layers, clearance, distance, etc.) help define a huge set of design rules which your layout needs to pass. 
+
+- Most common errors that DRC can find:
+	- Clearance: A trace is too close to either another trace or a via. 
+	- Overlap: Two different signal traces are overlapping each other. This will create a short if it's not fixed. 
+	- Dimension: A trace, pad or via is intersecting with (or too close to) a dimension line. if this isn't fixed that part of the board will just be cutoff. 
+
+Finishing Touches:
+- Adding copper pours: When you're adding a copper pour it's for the ground signal. Select the POLYGON tool - select the top copper(1) layer, adjust the isolate setting which defines how much clearance the ground pour gives another signals. After you have drawn the polygon, you have to connect it to a net using the NAME tool. The last step is to hit ratsnest. You should have ground pours on both sides of the board, so follow the same set of steps on the bottom layer. 
+
+Adding Silkscreen:
+- Silkscreen can be a critical part of PCB design. We can manually add other information, like labels, logos, and names. a variety of draw tools - wire, text, circle, arc, etc. can be used to draw on the silkscreen layer.
+
+ 
